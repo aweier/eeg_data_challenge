@@ -2,3 +2,4 @@ BIDS_CHB-MIT.zip
 *.zip
 /BIDS_Siena
 tutorial.ipynb
+eeg-seizure-detection.py
