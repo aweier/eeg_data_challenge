@@ -8,29 +8,23 @@ scikit-learn>=1.0.0
 matplotlib>=3.5.0
 seaborn>=0.11.0
 
-# Model Interpretation
-shap>=0.41.0
+# EEG Data Processing
+mne>=0.24.0
+mne-bids>=0.11.0
+pybids>=0.15.1
 
-# Exploratory Data Analysis
-sweetviz>=2.1.3
+#Deep Learning
+torch>=1.11.0
+torchvision>=0.12.0
 
-# AutoML using FLAML
-flaml>=1.0.0
+#Data Handling
+tdqm>=4.64.0
+pathlib>=1.0.1
+typing>=3.7.4
 
-# Automatic Generation Library
-autogen>=0.1.0
+#Jupyter Notebook
+jupyter>=1.0.0
+ipykernel>=6.0.0
 
-# Epilepsy to BIDS conversion tool
-epilepsy2bids>=0.1.0
-
-# Additional Libraries for EEG and Data Handling
-mne>=0.24.0            # For EEG data processing and visualization
-imbalanced-learn>=0.9.0  # For handling imbalanced datasets common in seizure detection
-tqdm>=4.64.0           # For progress bars during processing
-joblib>=1.2.0          # For model serialization and caching
-statsmodels>=0.13.0    # For statistical analysis and hypothesis testing
-
-# Optional: Deep Learning Libraries (Uncomment if needed)
-# tensorflow>=2.7.0    # For deep learning approaches
-# torch>=1.11.0        # For deep learning approaches
-# pytorch-lightning>=1.6.0  # For deep learning approaches
+#Seziure Detection Specific
+imbalanced-learn>=0.9.0

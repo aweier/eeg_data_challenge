@@ -23,8 +23,6 @@ Epilepsy is the most common chronic brain disease and affects people of all ages
 
 EEG-based seizure detection aims to detect the onset and duration of all seizures in an EEG recording. The task has benefited from advances in machine learning. However, a relative scarcity of public datasets and a lack of standardization hinder progress in the field. This likely explains the lack of adoption of state-of-the-art algorithms in clinical practices. Recently, SzCORE has proposed a method to standardize dataset formats, evaluation methodology, and performance metrics.
 
-In this machine learning challenge, I leveraged the standardization proposed by SzCORE. Participants are invited to build models on any combination of standardized publicly available datasets or private datasets. The model should perform a segmentation task by identifying the onset and duration of all epileptic seizures given a long-term, continuous EEG as input. Models will then be evaluated on a large hold-out dataset using the event-based F1 score as the evaluation metric.
-
 ---
 
 ### Objective
@@ -35,13 +33,110 @@ This challenge aimed to build a seizure detection model that accurately detected
 
 ### Installation
 
-pip install -r requirements.txt
+#### Prerequisites
+- Python 3.9 or higher
+- BIDS-formatted EEG dataset
 
+#### Create a virtual environment
+```
+conda create -n eeg python=3.9
+conda activate eeg
+```
+#### Install dependencies
+```
+pip install -r requirements.txt
+```
 ---
 
 ### Usage
 
-*Explain how to run or use the project.*
+#### EEG Seizure Detection Pipeline
+A deep learning-based pipeline for detecting seizures in EEG data using BIDS-formatted datasets.
+
+#### Data Preparation
+
+Ensure your EEG data is organized in BIDS format. The structure should look like:
+```
+BIDS_Siena/
+└── BIDS_Siena/
+    ├── sub-00/
+    │   └── ses-01/
+    │       └── eeg/
+    │           ├── sub-00_ses-01_task-szMonitoring_run-00_eeg.edf
+    │           ├── sub-00_ses-01_task-szMonitoring_run-00_events.tsv
+    │           └── ...
+    ├── sub-01/
+    └── ...
+```
+
+### Running the Pipeline
+
+#### Option 1: Jupyter Notebook (Recommended for Exploration)
+
+1. Start Jupyter Notebook:
+```bash
+jupyter notebook
+```
+
+2. Open `seizure_detection.ipynb` and run the cells sequentially to:
+   - Load and preprocess EEG data
+   - Train the seizure detection model
+   - Visualize results
+   - Evaluate model performance
+
+#### Option 2: Python Script
+
+1. Update the path to your BIDS dataset in the script:
+```python
+# In seizure_detection.py
+initial_path = Path(r"path/to/your/BIDS_dataset")
+```
+
+2. Run the script:
+```bash
+python seizure_detection.py
+```
+
+3. The script will:
+   - Load and process the EEG data
+   - Train a CNN model on the data
+   - Output metrics and visualizations
+   - Save the best model to `best_model.pth`
+
+### Customizing the Pipeline
+
+- **Adjust hyperparameters** in `main()`:
+```python
+# Change learning rate
+optimizer = torch.optim.Adam(model.parameters(), lr=0.0005)
+
+# Adjust batch size
+train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+
+# Change training epochs
+n_epochs = 20
+```
+
+- **Modify model architecture** in `SeizureDetectionModel` class
+- **Change data preprocessing** in `load_single_recording` function
+
+### Using the Trained Model for Inference
+
+```python
+# Load the best model
+checkpoint = torch.load('best_model.pth')
+model = SeizureDetectionModel(n_channels=19)
+model.load_state_dict(checkpoint['model_state_dict'])
+model.eval()
+
+# Process new EEG data
+# ... [code to load and preprocess new EEG data] ...
+
+# Make predictions
+with torch.no_grad():
+    predictions = model(new_data)
+    predictions = (torch.sigmoid(predictions.squeeze()) > 0.5).float()
+```
 
 ---
 
