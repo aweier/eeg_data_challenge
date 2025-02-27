@@ -156,7 +156,7 @@ This project is licensed under the [Open Data Commons Attribution License v1.0](
 
 - **Beniczky, S., et al. (2013).** *Standardized computer‐based organized reporting of EEG: SCORE.* Epilepsia, 54(6), 1112-1124.  
 - **Beniczky, S., et al. (2017).** *Standardized computer-based organized reporting of EEG: SCORE–second version.* Clinical Neurophysiology, 128(11), 2334-2346.  
-- **Dan, J., & Detti, P. (2024).** *BIDS Siena Scalp EEG Database (v1.0.0)* [Data set]. EPFL. [https://doi.org/10.5281/zenodo.10640762](https://doi.org/10.5281/zenodo.10640762).  
+- **Dan, J., & Detti, P. (2024).** *BIDS Siena Scalp EEG Database (v1.0.0)* [Data set]. EPFL. [https://doi.org/10.5281/zenodo.10640762](https://doi.org/10.5281/zenodo.10640762).
 - **Goldberger, A., Amaral, L., Glass, L., Hausdorff, J., Ivanov, P. C., Mark, R., ... & Stanley, H. E. (2000).** *PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals.* Circulation [Online], 101(23), e215–e220.  
 - **Guttag, J. (2010).** *CHB-MIT Scalp EEG Database (version 1.0.0).* PhysioNet. [https://doi.org/10.13026/C2K01R](https://doi.org/10.13026/C2K01R).  
 - **Shoeb, A. (2009).** *Application of Machine Learning to Epileptic Seizure Onset Detection and Treatment.* PhD Thesis, Massachusetts Institute of Technology.  
