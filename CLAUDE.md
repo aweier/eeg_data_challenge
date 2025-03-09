@@ -1,7 +1,7 @@
 # CLAUDE.md - EEG Seizure Detection Project Guide
 
 ## Commands
-- **Run main script**: `python eeg-seizure-detection.py`
+- **Run main script**: `python3 eeg-seizure-detection.py`
 - **Run Jupyter notebook**: `jupyter notebook eegSeizureDetection.ipynb`
 - **Install dependencies**: `pip install -r requirements.txt`
 - **Create environment**: `conda create -n eeg python=3.9 && conda activate eeg`
@@ -21,7 +21,7 @@
 - Notebooks for exploration and visualization
 - BIDS-formatted dataset organized by subjects/sessions
 
-## Latest Model Improvements (2025-02-27)
+## Latest Model Improvements (2025-03-09)
 The seizure detection model was enhanced with the following improvements:
 
 1. **EEG Preprocessing**:
@@ -35,17 +35,28 @@ The seizure detection model was enhanced with the following improvements:
    - Added support for multi-subject training
    - Implemented data augmentation for seizure windows
    - Added class balancing through weighted sampling
+   - Reduced window size to 128 samples for memory efficiency
 
 3. **Model Architecture**:
-   - Created a more efficient CNN with three convolutional layers
-   - Reduced model parameters for faster training and inference
+   - Created a CNN with three convolutional layers
+   - Implemented dynamic model initialization that adapts to input dimensions
    - Added dropout for improved generalization
-   - Implemented class-weighted loss to handle imbalanced data
+   - Used class-weighted loss to handle imbalanced data
 
 4. **Training Process**:
    - Added early stopping based on F1 score
-   - Added detailed evaluation metrics (precision, recall, F1, specificity)
-   - Implemented model checkpointing based on F1 score
-   - Added final training on full dataset for optimal performance
+   - Added event-based metrics for realistic evaluation
+   - Implemented model checkpointing based on event F1 score
+   - Added Docker support for model deployment
 
-The latest model is saved as `improved_seizure_model_new.pth`.
+The latest model is saved as `seizure_model_event_metrics.pth`.
+
+## Docker Deployment
+To deploy the seizure detection model:
+1. Copy your trained model to the Docker directory as 'model.pth'
+2. Build the Docker image: `docker build -t seizure-detection .`
+3. Test the Docker image on a sample EEG file:
+   ```
+   docker run --rm -v /path/to/eeg:/data -v /path/to/output:/output -e INPUT=sample.edf -e OUTPUT=prediction.tsv seizure-detection
+   ```
+4. Submit the Docker image to the competition
